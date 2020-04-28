@@ -1,0 +1,5 @@
+.truncate {
+  width: 135px;
+  white-space: nowrap;
+  overflow: hidden;
+}

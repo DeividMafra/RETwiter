@@ -1,4 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
+import PostItem from './PostItem';
+import Loader from '../layout/Loader';
 
 const Posts = () => {
 
@@ -21,18 +23,22 @@ const Posts = () => {
   }
 
   if (loading) {
-    return <h4>Loading...</h4>
+    return <Loader />
   }
 
-
-
   return (
-    <ul className="collection with-header">
-      <li className="collection-header">
-        <h4 className="center">Posts</h4>
-      </li>
-      {!loading && posts.length === 0 ? (<p className="center">There is no posts!</p>) : posts.map(post => <li>{post.title}</li>)}
-    </ul>
+    <div>
+      <h4 className="center">Posts</h4>
+      <ul className="collection">
+        <li className="collection-item avatar">
+          {!loading && posts.length === 0
+            ?
+            (<p className="center">There is no posts!</p>)
+            :
+            posts.map((post, i) => <PostItem post={post} key={i} />)}
+        </li>
+      </ul>
+    </div>
   )
 }
 
