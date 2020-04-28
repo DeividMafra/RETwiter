@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import 'materialize-css/dist/css/materialize.min.css';
 import M from 'materialize-css/dist/js/materialize.min.js';
 
+import NavBar from './components/layout/Navbar';
+import Posts from './components/posts/Posts';
 
 import './App.css';
 
@@ -12,8 +14,11 @@ const App = () => {
   });
 
   return (
-    <div className="App">
-      <h1>React Twitter</h1>
+    <div>
+      <NavBar />
+      <div className="container">
+        <Posts />
+      </div>
     </div>
   );
 }
