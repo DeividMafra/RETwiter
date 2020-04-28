@@ -2,36 +2,41 @@ import React, { useEffect, useState, useContext } from 'react';
 import AuthContext from '../context/AuthContext';
 import M from 'materialize-css/dist/js/materialize.min.js';
 
-const Register = () => {
+const Register = props => {
   const authContext = useContext(AuthContext);
   const [user, setUser] = useState({
-    userName: '',
+    username: '',
     password: ''
   });
 
-  const { register } = authContext;
-  const [loading, setLoading] = useState(false);
-
-  const { userName, password } = user;
+  const { register, isAuthenticated } = authContext;
+  const { username, password } = user;
 
   const onChange = e => setUser({ ...user, [e.target.name]: e.target.value });
 
-
   const onSubmit = e => {
     e.preventDefault();
-    if (userName === '' || password === '') {
-      M.toast({ html: "Please enter a userName and password, please!" })
+    if (username === '' || password === '') {
+      M.toast({ html: "Please enter a username and password, please!" })
     } else {
       register({
-        userName, password
+        username, password
       });
+      // props.history.push('/posts')
     }
   }
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      props.history.push('/posts')
+    }
+    //eslint-disable-next-line
+  }, [isAuthenticated, props.history])
 
 
   return (
     <div>
-      <h4>Register / Login</h4>
+      <h4>Register</h4>
       <br />
       <form onSubmit={onSubmit}>
 
@@ -39,11 +44,11 @@ const Register = () => {
           <div className="input-field">
             <input
               type="text"
-              name="userName"
-              value={userName}
+              name="username"
+              value={username}
               onChange={onChange}
             />
-            <label htmlFor="userName" className="active">User Name</label>
+            <label htmlFor="username" className="active">User Name</label>
           </div>
         </div>
 

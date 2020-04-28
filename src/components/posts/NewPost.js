@@ -1,23 +1,39 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import M from 'materialize-css/dist/js/materialize.min.js';
+import PostContext from '../context/PostContext';
 
 const NewPost = () => {
-  const [title, setTitle] = useState('');
-  const [content, setContent] = useState('');
-  const [authorId, setAuthorId] = useState('');
-  const [date, setDate] = useState(new Date().toISOString());
-  const [tags, setTags] = useState([]);
 
-  const onSubmit = () => {
+  const postContext = useContext(PostContext);
+  const { addPost } = postContext;
+
+  const [post, setPost] = useState({
+    token: localStorage.getItem('token'),
+    username: localStorage.getItem('username'),
+    title: '',
+    content: '',
+    authorId: '',
+    date: new Date().toISOString(),
+    tags: [],
+  });
+
+  const { title, content, tags } = post;
+
+  const onChange = e =>
+    setPost({ ...post, [e.target.name]: e.target.value });
+
+  const onSubmit = e => {
+    e.preventDefault();
     if (title === '' || content === '') {
       M.toast({ html: "Please enter a title and your message!" })
     } else {
-      console.log('title', title)
+      addPost(post)
+      // console.log('title', title)
     }
   }
 
   return (
-    <div>
+    <form onSubmit={onSubmit}>
       <h4>New Post</h4>
       <div className="row">
         <div className="input-field">
@@ -25,7 +41,7 @@ const NewPost = () => {
             type="text"
             name="title"
             value={title}
-            onChange={e => setTitle(e.target.value)}
+            onChange={onChange}
           />
           <label htmlFor="title" className="active">Title</label>
         </div>
@@ -37,7 +53,7 @@ const NewPost = () => {
             type="text"
             name="content"
             value={content}
-            onChange={e => setContent(e.target.value)}
+            onChange={onChange}
           />
           <label htmlFor="content" className="active">Message</label>
         </div>
@@ -49,17 +65,18 @@ const NewPost = () => {
             type="text"
             name="tags"
             value={tags}
-            onChange={e => setTags(e.target.value)}
+            onChange={onChange}
           />
           <label htmlFor="tags" className="active">Tags</label>
         </div>
       </div>
 
       <div>
-        <a onClick={onSubmit} className="waves-effect waves-light btn">Post</a>
+        <a className="waves-effect waves-light btn">Post</a>
+        {/* <a onClick={onSubmit} className="waves-effect waves-light btn">Post</a> */}
       </div>
 
-    </div>
+    </form>
   )
 }
 
