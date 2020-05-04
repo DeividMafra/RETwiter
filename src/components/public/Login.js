@@ -11,11 +11,9 @@ const Login = props => {
   });
 
   const { logIn, isAuthenticated } = authContext;
-
   const { username, password } = user;
 
   const onChange = e => setUser({ ...user, [e.target.name]: e.target.value });
-
 
   const onSubmit = e => {
     e.preventDefault();
@@ -25,12 +23,10 @@ const Login = props => {
       logIn({
         username, password
       });
-      // props.history.push('/posts')
     }
   }
 
   useEffect(() => {
-    // if (localStorage.getItem("token") !== null) {
     if (isAuthenticated) {
       props.history.push('/posts')
     }

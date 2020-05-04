@@ -4,7 +4,6 @@ import 'materialize-css/dist/css/materialize.min.css';
 import M from 'materialize-css/dist/js/materialize.min.js';
 
 import NavBar from './components/layout/Navbar';
-import AddPostBtn from './components/layout/AddPostBtn';
 import Register from './components/public/Register';
 import Login from './components/public/Login';
 import Posts from './components/posts/Posts';
@@ -42,7 +41,7 @@ const App = () => {
             <div className="container">
               {/* {isAuthenticated && <AddPostBtn />} */}
               {/* {localStorage.getItem("token") !== null && <AddPostBtn />} */}
-              <AddPostBtn />
+
               <Switch>
                 <Route exact path='/' component={Register} />
                 <Route exact path='/Login' component={Login} />
