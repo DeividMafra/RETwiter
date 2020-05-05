@@ -34,22 +34,14 @@ const NewPost = props => {
   const onChange = e =>
     setPost({ ...post, [e.target.name]: e.target.value });
 
-  // const onChange = e =>
-  //   setPost({
-  //     ...post,
-  //     title: e.target.value.title,
-  //     content: e.target.value.content,
-  //     tags: tagList
-  //   });
-
-  // const { title, content } = post;
-  const { title, content, tags } = post;
+  const { title, content } = post;
 
   const onSubmit = e => {
     e.preventDefault();
     if (title === '' || content === '') {
       M.toast({ html: "Please enter a title and your message!" })
     } else {
+      post.tags = tagList;
       addPost(post)
       console.log('post', post)
       M.toast({ html: "Added new post!" });
@@ -85,29 +77,15 @@ const NewPost = props => {
         </div>
       </div>
       <div className="row">
-        {/* <div className="input-field">
-          <input
-            // type="hidden"
-            type="text"
-            name="tags"
-            value={tags}
-            onChange={onChange}
-          />
-          <label htmlFor="tags" className="active">Tag List</label>
-        </div> */}
-        <Fragment>
-          {/* <label htmlFor="tags" className="active badge">{tagList}</label> */}
-          {/* <span></span> */}
 
+        <Fragment>
           <div className="input-field col s3">
-            <label htmlFor="tags" onChange={onChange} value={tags} className="">Tags: {tagList + " "}</label>
+            <label htmlFor="tags" className="">Tags: {tagList + " "}</label>
             <input
               type="text"
-              // name="newTag"
-              name="tags"
+              name="newTag"
               onChange={addToTagList}
             />
-            {/* <label htmlFor="tags" className="active">Add New Tag</label> */}
           </div>
           <div className="col s3">
             <button onClick={onAddTagClick} className="waves-effect waves-light blue btn">+</button>

@@ -35,7 +35,7 @@ const Login = props => {
 
 
   return (
-    <div>
+    <div className="container">
       <h4>Login</h4>
       <br />
       <form onSubmit={onSubmit}>

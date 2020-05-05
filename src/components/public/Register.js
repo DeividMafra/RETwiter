@@ -35,7 +35,7 @@ const Register = props => {
 
 
   return (
-    <div>
+    <div className="container">
       <h4>Register</h4>
       <br />
       <form onSubmit={onSubmit}>

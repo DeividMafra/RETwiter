@@ -19,6 +19,7 @@ const App = () => {
   useEffect(() => {
     //Initialize Materialize JS
     M.AutoInit();
+
   });
 
   return (
