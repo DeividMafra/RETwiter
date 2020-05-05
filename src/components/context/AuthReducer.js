@@ -14,6 +14,7 @@ export default (state, action) => {
     case LOGIN_SUCCESS:
       localStorage.setItem('token', action.payload.token);
       localStorage.setItem('username', action.payload.user);
+      localStorage.setItem('id', action.payload.id);
       return {
         ...state,
         ...action.payload,
@@ -26,6 +27,7 @@ export default (state, action) => {
     case LOGOUT:
       localStorage.removeItem('token');
       localStorage.removeItem('username');
+      localStorage.removeItem('id');
       return {
         ...state,
         token: null,

@@ -7,7 +7,7 @@ import M from 'materialize-css/dist/js/materialize.min.js';
 import {
   REGISTER_SUCCESS,
   REGISTER_FAIL,
-  AUTH_ERROR,
+  // AUTH_ERROR,
   LOGIN_SUCCESS,
   LOGIN_FAIL,
   LOGOUT,
@@ -31,13 +31,12 @@ const AuthState = props => {
       }
     }
     console.log('FormData', FormData)
-    await axios.post('/auth/register', FormData, config).
-      then(res =>
-        dispatch({
-          type: REGISTER_SUCCESS,
-          payload: res.data.user,
-        })
-      )
+    await axios.post('/auth/register', FormData, config).then(res =>
+      dispatch({
+        type: REGISTER_SUCCESS,
+        payload: res.data.user,
+      })
+    )
       .catch(error => {
         if (error.response.data.errors.username === 'taken') {
           M.toast({ html: "User already exist!" })
@@ -61,13 +60,12 @@ const AuthState = props => {
       }
     }
     console.log('FormData', FormData)
-    await axios.post('/auth/login', FormData, config).
-      then(res =>
-        dispatch({
-          type: LOGIN_SUCCESS,
-          payload: res.data.user,
-        })
-      )
+    await axios.post('/auth/login', FormData, config).then(res =>
+      dispatch({
+        type: LOGIN_SUCCESS,
+        payload: res.data.user,
+      })
+    )
       .catch(error => {
         if (error.response.data.errors["username or password"] === 'is invalid') {
           M.toast({ html: "Username and/or password invalid!" })

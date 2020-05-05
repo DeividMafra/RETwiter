@@ -13,7 +13,7 @@ const PostItem = ({ post: { title, authorId, date, content, tags } }) => {
   return (
     <Fragment>
       {isAuthenticated && <AddPostBtn />}
-      <li className="collection-item">
+      <div className="collection-item">
         <i className="material-icons circle green">account_circle</i>
         <span className="truncate">AUTHOR: {authorId}</span><br /><br />
         <span style={{ textTransform: 'uppercase' }} className="card-title blue-grey-text">{title}</span>
@@ -29,7 +29,7 @@ const PostItem = ({ post: { title, authorId, date, content, tags } }) => {
         <br />
 
         {/* {tags && (tags.map((tag, j) => <span key={j}>{tag} </span>))} */}
-      </li>
+      </div>
     </Fragment>
   )
 }

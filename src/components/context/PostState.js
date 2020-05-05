@@ -2,17 +2,16 @@ import React, { useReducer } from 'react';
 import PostContext from './PostContext';
 import PostReducer from './PostReducer';
 import axios from 'axios';
-import M from 'materialize-css/dist/js/materialize.min.js';
 
 import {
   ADD_POST
 } from './types';
 
 const PostState = props => {
+
   const initialState = {
-    token: localStorage.getItem('token'),
-    username: localStorage.getItem('username'),
-    authorId: null,
+    token: '',
+    authorId: '',
     date: new Date().toISOString(),
     tags: [],
     title: null,
@@ -26,31 +25,23 @@ const PostState = props => {
     const config = {
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem('token')).token
+        'Authorization': 'Bearer ' + localStorage.getItem('token')
       }
     };
-    // try{
     const res = await axios.post('/posts', post, config);
 
     dispatch({
       type: ADD_POST,
-      payload: res.data
+      payload: res.post
     });
-    // } catch (err) {
-    // dispatch({
-    //   type: ADD_ERROR,
-    //   payload: err.response.msg
-    // });
   };
-  // };
 
 
   return (
     <PostContext.Provider
       value={{
         token: state.token,
-        username: state.username,
-        authorId: state.authorId,
+        authorId: state.id,
         date: state.date,
         tags: state.tags,
         title: state.title,
