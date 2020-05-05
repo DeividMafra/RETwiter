@@ -62,7 +62,7 @@ const NewPost = props => {
     <form onSubmit={onSubmit}>
       <h4>New Post</h4>
       <div className="row">
-        <div className="input-field">
+        <div className="input-field col s6">
           <input
             type="text"
             name="title"
@@ -74,7 +74,7 @@ const NewPost = props => {
       </div>
 
       <div className="row">
-        <div className="input-field">
+        <div className="input-field col s6">
           <input
             type="text"
             name="content"
@@ -99,7 +99,7 @@ const NewPost = props => {
           {/* <label htmlFor="tags" className="active badge">{tagList}</label> */}
           {/* <span></span> */}
 
-          <div className="input-field col s6">
+          <div className="input-field col s3">
             <label htmlFor="tags" onChange={onChange} value={tags} className="">Tags: {tagList + " "}</label>
             <input
               type="text"
@@ -109,8 +109,8 @@ const NewPost = props => {
             />
             {/* <label htmlFor="tags" className="active">Add New Tag</label> */}
           </div>
-          <div className="col s6">
-            <button onClick={onAddTagClick} className="waves-effect waves-light blue btn">Add tag </button>
+          <div className="col s3">
+            <button onClick={onAddTagClick} className="waves-effect waves-light blue btn">+</button>
           </div>
         </Fragment>
 
